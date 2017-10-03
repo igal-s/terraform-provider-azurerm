@@ -268,11 +268,13 @@ resource "azurerm_key_vault" "test" {
     object_id = "${data.azurerm_client_config.current.service_principal_object_id}"
 
     key_permissions = [
-      "all",
+      "get",
     ]
 
     secret_permissions = [
-      "all",
+      "get",
+      "delete",
+      "set",
     ]
   }
 
@@ -313,11 +315,13 @@ resource "azurerm_key_vault" "test" {
     object_id = "${data.azurerm_client_config.current.service_principal_object_id}"
 
     key_permissions = [
-      "all",
+      "create",
     ]
 
     secret_permissions = [
-      "all",
+      "get",
+      "delete",
+      "set",
     ]
   }
 
@@ -362,11 +366,13 @@ resource "azurerm_key_vault" "test" {
     object_id = "${data.azurerm_client_config.current.service_principal_object_id}"
 
     key_permissions = [
-      "all",
+      "create",
     ]
 
     secret_permissions = [
-      "all",
+      "get",
+      "delete",
+      "set",
     ]
   }
 

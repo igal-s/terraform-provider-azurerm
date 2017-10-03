@@ -8,7 +8,7 @@ import (
 	"github.com/Azure/azure-sdk-for-go/arm/keyvault"
 	"github.com/hashicorp/terraform/helper/schema"
 	"github.com/hashicorp/terraform/helper/validation"
-	"github.com/satori/uuid"
+	uuid "github.com/satori/go.uuid"
 	"github.com/terraform-providers/terraform-provider-azurerm/azurerm/utils"
 )
 
@@ -95,7 +95,6 @@ func resourceArmKeyVault() *schema.Resource {
 							Elem: &schema.Schema{
 								Type: schema.TypeString,
 								ValidateFunc: validation.StringInSlice([]string{
-									string(keyvault.All),
 									string(keyvault.Create),
 									string(keyvault.Delete),
 									string(keyvault.Deleteissuers),
@@ -118,7 +117,6 @@ func resourceArmKeyVault() *schema.Resource {
 							Elem: &schema.Schema{
 								Type: schema.TypeString,
 								ValidateFunc: validation.StringInSlice([]string{
-									string(keyvault.KeyPermissionsAll),
 									string(keyvault.KeyPermissionsBackup),
 									string(keyvault.KeyPermissionsCreate),
 									string(keyvault.KeyPermissionsDecrypt),
@@ -127,6 +125,8 @@ func resourceArmKeyVault() *schema.Resource {
 									string(keyvault.KeyPermissionsGet),
 									string(keyvault.KeyPermissionsImport),
 									string(keyvault.KeyPermissionsList),
+									string(keyvault.KeyPermissionsPurge),
+									string(keyvault.KeyPermissionsRecover),
 									string(keyvault.KeyPermissionsRestore),
 									string(keyvault.KeyPermissionsSign),
 									string(keyvault.KeyPermissionsUnwrapKey),
@@ -143,10 +143,13 @@ func resourceArmKeyVault() *schema.Resource {
 							Elem: &schema.Schema{
 								Type: schema.TypeString,
 								ValidateFunc: validation.StringInSlice([]string{
-									string(keyvault.SecretPermissionsAll),
+									string(keyvault.SecretPermissionsBackup),
 									string(keyvault.SecretPermissionsDelete),
 									string(keyvault.SecretPermissionsGet),
 									string(keyvault.SecretPermissionsList),
+									string(keyvault.SecretPermissionsPurge),
+									string(keyvault.SecretPermissionsRecover),
+									string(keyvault.SecretPermissionsRestore),
 									string(keyvault.SecretPermissionsSet),
 								}, true),
 								DiffSuppressFunc: ignoreCaseDiffSuppressFunc,
